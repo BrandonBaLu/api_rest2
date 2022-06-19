@@ -31,21 +31,21 @@ def test_clientes():
 
 
 
-def test_cliente_insert():
+def test_clientes_post():
     payload={ "id_cliente": 4, "nombre": "str", "email" : "str"}
-    response = clientes.post("/clientes/", json=payload)  #Solicitud
+    response = clientes.post("/clientes/", json=payload)  #requests
     data = {"message":"Cliente insertado"}
     assert response.status_code ==200
     assert response.json()==data
 
-def test_cliente_update():
+def test_clientes_update():
     payload={ "id_cliente": 4, "nombre": "Cliente actualizado", "email" : "actualizado@email.com"}
-    response = clientes.put("/clientes/", json=payload)  #Solicitud
+    response = clientes.put("/clientes/", json=payload)  #requests
     data = {"message":"Cliente actualizado"}
     assert response.status_code ==200
     assert response.json()==data
     
-def test_delete_clientes():
+def test_clientes_delete():
     payload={ "id_cliente": 4, "nombre": "Cliente actualizado", "email" : "actualizado@email.com"}
     response = clientes.delete("/clientes/4", json=payload)
     data = {"message": "Cliente eliminado"}
