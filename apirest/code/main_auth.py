@@ -73,7 +73,7 @@ async def clientes_update(nombre: str="", email:str="", id_cliente:int=0):
         cursor.fetchall()
         response = {"message":"Cliente actualizado"}
         return response
-        
+
 @app.delete("/clientes/{id}") 
 async def clientes(id): 
      with sqlite3.connect('sql/clientes.sqlite') as connection: 
@@ -84,7 +84,7 @@ async def clientes(id):
          response = {"message":"Cliente eliminado"}
          return response
 
-#GET  de todos los clientes
+
  
 def get_current_level(credentials: HTTPBasicCredentials = Depends(security)): 
     password_b = hashlib.md5(credentials.password.encode())  
@@ -125,7 +125,6 @@ async def get_clientes(level: int = Depends(get_current_level)):
             headers={"WWW-Authenticate": "Basic"}, 
         )
 
-#Get id de un cliente
 def getid_current_level(id:int=0,credentials: HTTPBasicCredentials = Depends(security)): 
     password_b = hashlib.md5(credentials.password.encode())  
     password = password_b.hexdigest() 
@@ -166,8 +165,6 @@ async def get_clientes(level: int = Depends(getid_current_level)):
             headers={"WWW-Authenticate": "Basic"}, 
         )
 
-
-# POST
 
  
 def post_current_level(cliente: ClienteIN, credentials: HTTPBasicCredentials = Depends(security)): 
@@ -212,7 +209,7 @@ async def post_clientes(level: int = Depends(post_current_level)):
             headers={"WWW-Authenticate": "Basic"}, 
         )
 
-#PUT
+
 def put_current_level(nombre: str="", email:str="", id_cliente:int=0, credentials: HTTPBasicCredentials = Depends(security)): 
     password_b = hashlib.md5(credentials.password.encode())  
     password = password_b.hexdigest() 
@@ -256,8 +253,6 @@ async def put_clientes(level: int = Depends(put_current_level)):
         )
 
        
-
-#DELETE
 def delete_current_level(id: int=0, credentials: HTTPBasicCredentials = Depends(security)): 
     password_b = hashlib.md5(credentials.password.encode())  
     password = password_b.hexdigest() 
